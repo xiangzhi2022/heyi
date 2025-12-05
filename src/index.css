@@ -1,0 +1,102 @@
+/**
+ * @file index.css
+ * @description 全局样式文件，包含 Tailwind CSS 导入、基础层样式、CSS 变量以及自定义工具类。
+ *              负责定义应用的基础视觉风格，如颜色主题、字体和通用效果。
+ * @author Gemini
+ */
+
+@import "tailwindcss";
+
+/* 配置 Tailwind v4 暗色模式使用 class 策略 */
+@variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    /* 品牌主色调 */
+    --color-primary: #4F46E5;
+    /* Indigo 600 - Premium & Trustworthy */
+    --color-primary-hover: #4338ca;
+    /* Indigo 700 */
+
+    /* 文本颜色 */
+    --color-text-default: #18181b;
+    /* Zinc 900 */
+    --color-text-light: #52525b;
+    /* Zinc 600 */
+    --color-text-lighter: #71717a;
+    /* Zinc 500 */
+
+    /* 背景颜色 */
+    --color-background-default: #fafafa;
+    /* Zinc 50 */
+    --color-background-light: #f4f4f5;
+    /* Zinc 100 */
+    --color-background-darker: #09090b;
+    /* Zinc 950 */
+
+    /* 边框颜色 */
+    --color-border-default: #e4e4e7;
+    /* Zinc 200 */
+    --color-border-dark: #27272a;
+    /* Zinc 800 */
+
+    /* 字体堆栈 */
+    --font-sans: "Inter", system-ui, sans-serif;
+  }
+
+  /* 暗色模式下覆盖 CSS 变量 */
+  .dark {
+    --color-text-default: #f4f4f5;
+    /* Zinc 100 */
+    --color-text-light: #a1a1aa;
+    /* Zinc 400 */
+    --color-text-lighter: #71717a;
+    /* Zinc 500 */
+
+    --color-background-default: #09090b;
+    /* Zinc 950 - Deep Premium Black */
+    --color-background-light: #18181b;
+    /* Zinc 900 */
+
+    --color-border-default: #27272a;
+    /* Zinc 800 */
+  }
+
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: var(--font-sans);
+    /* 使用 CSS 变量定义字体 */
+
+    color: var(--color-text-default);
+    /* 使用语义化颜色变量 */
+    background-color: var(--color-background-default);
+    /* 使用语义化颜色变量 */
+
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+}
+
+/* Custom Utilities - 自定义工具类 */
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  /* 玻璃效果 */
+  .glass {
+    @apply bg-white/70 dark:bg-zinc-900/70 backdrop-blur-xl border border-white/20 dark:border-white/10;
+  }
+
+  /* 玻璃卡片效果 */
+  .glass-card {
+    @apply bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-sm hover:shadow-md transition-all duration-200;
+  }
+
+  /* 3D 透视效果 */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+}
