@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  heyi-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: heyi-app
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    networks:
+      - heyi-network
+    labels:
+      - "com.heyi.description=H1R Hub Copyright Service Platform"
+
+networks:
+  heyi-network:
+    driver: bridge
